@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Practice App</title>
+</head>
+<body>
+    <h1>Math Practice</h1>
+    <p>Solve the following:</p>
+    <div id="question"></div>
+    <input type="number" id="answer" placeholder="Your answer">
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="result"></p>
+
+    <script>
+        let num1 = Math.floor(Math.random() * 10);
+        let num2 = Math.floor(Math.random() * 10);
+        document.getElementById('question').innerText = `${num1} + ${num2} = ?`;
+
+        function checkAnswer() {
+            let ans = document.getElementById('answer').value;
+            if (parseInt(ans) === num1 + num2) {
+                document.getElementById('result').innerText = "Correct!";
+            } else {
+                document.getElementById('result').innerText = "Try again!";
+            }
+        }
+    </script>
+</body>
+</html>
