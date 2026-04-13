@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Math App - VxoDC</title>
+<title>Math Engine - Vxo Study OS</title>
 
 <style>
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
     background: #000;
-    color: #fff;
+    color: white;
 }
 
 nav {
@@ -19,10 +19,10 @@ nav {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 18px;
     padding: 12px;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
 }
 
 nav a {
@@ -32,45 +32,44 @@ nav a {
 }
 
 nav a:hover {
-    color: #fff;
+    color: white;
 }
 
 .container {
     height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 20px;
 }
 
 .card {
-    background: #111;
-    border: 1px solid #222;
-    padding: 20px;
-    border-radius: 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
     width: 300px;
+    backdrop-filter: blur(16px);
 }
 
 input {
+    margin-top: 10px;
     padding: 10px;
     width: 120px;
     text-align: center;
     border-radius: 8px;
     border: none;
-    margin-top: 10px;
 }
 
 button {
     margin-top: 10px;
-    padding: 10px 16px;
+    padding: 10px 14px;
     border-radius: 999px;
     border: none;
     cursor: pointer;
 }
 
-.result {
+#result {
     margin-top: 10px;
     color: #aaa;
 }
@@ -80,45 +79,44 @@ button {
 <body>
 
 <nav>
-    <a href="index.html">Home</a>
+    <a href="index.html">Dashboard</a>
     <a href="about.html">About</a>
-    <a href="math.html">Math App</a>
+    <a href="math.html">Math</a>
 </nav>
 
 <div class="container">
 
-<h1>Math Practice</h1>
-
 <div class="card">
 
-<div id="q">Loading...</div>
+<h2>Math Engine</h2>
+
+<div id="q"></div>
 
 <input id="a" type="number" placeholder="Answer">
 
 <br>
 
 <button onclick="check()">Submit</button>
+<button onclick="newQ()">New</button>
 
-<p class="result" id="r"></p>
-
-<button onclick="newQ()">New Question</button>
+<p id="result"></p>
 
 </div>
 
 </div>
 
 <script>
-let a, b, op;
+let x, y, op;
 
 function newQ() {
-    a = Math.floor(Math.random() * 10);
-    b = Math.floor(Math.random() * 10);
+    x = Math.floor(Math.random()*10);
+    y = Math.floor(Math.random()*10);
 
     let ops = ["+", "-", "*"];
-    op = ops[Math.floor(Math.random() * ops.length)];
+    op = ops[Math.floor(Math.random()*ops.length)];
 
-    document.getElementById("q").innerText = `${a} ${op} ${b} = ?`;
-    document.getElementById("r").innerText = "";
+    document.getElementById("q").innerText = `${x} ${op} ${y} = ?`;
+    document.getElementById("result").innerText = "";
     document.getElementById("a").value = "";
 }
 
@@ -126,11 +124,11 @@ function check() {
     let val = Number(document.getElementById("a").value);
     let correct;
 
-    if (op === "+") correct = a + b;
-    if (op === "-") correct = a - b;
-    if (op === "*") correct = a * b;
+    if (op === "+") correct = x + y;
+    if (op === "-") correct = x - y;
+    if (op === "*") correct = x * y;
 
-    let r = document.getElementById("r");
+    let r = document.getElementById("result");
 
     if (val === correct) {
         r.innerText = "Correct ✔";
