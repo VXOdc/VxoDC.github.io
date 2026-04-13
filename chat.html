@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Assistant - Vxo Study OS</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+    background: #000;
+    color: white;
+}
+
+/* NAV */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    padding: 12px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: white;
+}
+
+/* CHAT BOX */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 320px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(16px);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+#chat {
+    height: 200px;
+    overflow-y: auto;
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="math.html">Math</a>
+    <a href="chat.html">Assistant</a>
+</nav>
+
+<div class="container">
+
+<div class="box">
+    <div id="chat">Study Assistant ready.</div>
+
+    <input id="input" placeholder="Ask something...">
+    <button onclick="send()">Ask</button>
+</div>
+
+</div>
+
+<script>
+function send() {
+    let input = document.getElementById("input");
+    let chat = document.getElementById("chat");
+
+    let q = input.value.toLowerCase();
+
+    let answer = "I’m not sure about that yet.";
+
+    // SIMPLE INTELLIGENCE (no API needed)
+    if (q.includes("math")) answer = "Try the Math Engine for practice problems.";
+    if (q.includes("study")) answer = "Break work into small chunks. 25 min focus works best.";
+    if (q.includes("homework")) answer = "Start with the hardest assignment first.";
+    if (q.includes("hello")) answer = "Hey — ready to study?";
+    if (q.includes("+") || q.includes("plus")) answer = "Use Math Engine for calculations.";
+
+    chat.innerHTML += "<br><br><b>You:</b> " + input.value;
+    chat.innerHTML += "<br><b>Assistant:</b> " + answer;
+
+    input.value = "";
+}
+</script>
+
+</body>
+</html>
