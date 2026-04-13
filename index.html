@@ -13,6 +13,7 @@ body {
     color: #fff;
 }
 
+/* NAV */
 nav {
     position: fixed;
     top: 0;
@@ -23,6 +24,7 @@ nav {
     padding: 12px;
     background: rgba(0,0,0,0.7);
     backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
 }
 
 nav a {
@@ -35,14 +37,19 @@ nav a:hover {
     color: #fff;
 }
 
-section {
-    min-height: 100vh;
+.hidden {
+    transform: translateY(-100%);
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 80px 20px;
+    padding: 20px;
 }
 
 h1 {
@@ -53,47 +60,17 @@ h1 {
 p {
     color: #aaa;
     max-width: 600px;
-    font-size: 16px;
 }
 
-button {
-    margin-top: 10px;
-    padding: 10px 16px;
+/* BUTTON STYLE */
+.btn {
+    margin-top: 20px;
+    padding: 10px 18px;
     border-radius: 999px;
-    border: none;
-    cursor: pointer;
-}
-
-.card {
-    background: #111;
-    border: 1px solid #222;
-    padding: 20px;
-    border-radius: 16px;
-    width: 300px;
-}
-
-input {
-    padding: 10px;
-    width: 100px;
-    text-align: center;
-    border-radius: 8px;
-    border: none;
-    margin-top: 10px;
-}
-
-.fade {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: 0.6s ease;
-}
-
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-@media (max-width: 600px) {
-    nav { font-size: 12px; gap: 12px; }
+    background: white;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
 }
 </style>
 </head>
@@ -101,68 +78,33 @@ input {
 <body>
 
 <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#math">Math</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="math.html">Math App</a>
 </nav>
 
-<section id="home" class="fade">
+<div class="hero">
     <h1>VxoDC</h1>
-    <p>A simple project space and math practice app built with HTML, CSS, and JavaScript.</p>
-</section>
+    <p>A simple student project dashboard and math practice tool built with HTML, CSS, and JavaScript.</p>
 
-<section id="about" class="fade">
-    <h2>About</h2>
-    <p>This is a clean, lightweight webpage. Easy to edit. Fast to load. No frameworks.</p>
-</section>
-
-<section id="math" class="fade">
-    <h2>Math Practice</h2>
-
-    <div class="card">
-        <div id="q"></div>
-        <input id="a" type="number" placeholder="Answer">
-        <br>
-        <button onclick="check()">Submit</button>
-        <p id="r"></p>
-        <button onclick="newQ()">New</button>
-    </div>
-</section>
+    <a class="btn" href="math.html">Open Math App</a>
+</div>
 
 <script>
-let x, y;
+let lastScroll = 0;
+const nav = document.querySelector("nav");
 
-function newQ() {
-    x = Math.floor(Math.random()*10);
-    y = Math.floor(Math.random()*10);
-    document.getElementById("q").innerText = `${x} + ${y} = ?`;
-    document.getElementById("r").innerText = "";
-    document.getElementById("a").value = "";
-}
+window.addEventListener("scroll", () => {
+    let current = window.pageYOffset;
 
-function check() {
-    let val = Number(document.getElementById("a").value);
-    let r = document.getElementById("r");
-
-    if (val === x + y) {
-        r.innerText = "Correct";
-        r.style.color = "lightgreen";
+    if (current > lastScroll) {
+        nav.classList.add("hidden");
     } else {
-        r.innerText = "Wrong";
-        r.style.color = "red";
+        nav.classList.remove("hidden");
     }
-}
 
-newQ();
-
-/* fade in */
-const obs = new IntersectionObserver(e => {
-    e.forEach(x => {
-        if (x.isIntersecting) x.target.classList.add("show");
-    });
+    lastScroll = current;
 });
-
-document.querySelectorAll(".fade").forEach(el => obs.observe(el));
 </script>
 
 </body>
