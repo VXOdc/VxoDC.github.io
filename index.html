@@ -24,19 +24,21 @@ nav {
     padding: 12px;
     background: rgba(0,0,0,0.4);
     backdrop-filter: blur(12px);
+    z-index: 1000;
 }
 
 nav a {
     color: #aaa;
     text-decoration: none;
     font-size: 14px;
+    transition: 0.2s;
 }
 
 nav a:hover {
     color: white;
 }
 
-/* TITLE */
+/* HEADER */
 .header {
     text-align: center;
     padding-top: 120px;
@@ -45,6 +47,7 @@ nav a:hover {
 .header h1 {
     font-size: clamp(40px, 6vw, 70px);
     margin: 0;
+    letter-spacing: -0.5px;
 }
 
 .header p {
@@ -53,7 +56,7 @@ nav a:hover {
     margin: 10px auto;
 }
 
-/* CARDS */
+/* GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -63,13 +66,14 @@ nav a:hover {
     padding: 20px;
 }
 
+/* CARD */
 .card {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
     backdrop-filter: blur(16px);
     border-radius: 18px;
     padding: 20px;
-    transition: 0.25s;
+    transition: 0.25s ease;
 }
 
 .card:hover {
@@ -103,42 +107,36 @@ nav a:hover {
 <body>
 
 <nav>
-    <a href="index.html">Dashboard</a>
+    <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="math.html">Math Engine</a>
+    <a href="chat.html">Study Assistant</a>
 </nav>
 
 <div class="header">
     <h1>Vxo Study OS</h1>
-    <p>Your lightweight student system for math practice, planning, and productivity.</p>
+    <p>A lightweight student system for math practice, studying, and productivity tools.</p>
 </div>
 
 <div class="grid">
 
     <div class="card">
         <h2>Math Engine</h2>
-        <p>Practice addition, subtraction, multiplication with scoring.</p>
+        <p>Practice addition, subtraction, and multiplication.</p>
         <a href="math.html">Open</a>
     </div>
 
     <div class="card">
-        <h2>About System</h2>
-        <p>Why this exists and how it was built.</p>
-        <a href="about.html">Read</a>
+        <h2>Study Assistant</h2>
+        <p>Ask questions and get instant help with studying.</p>
+        <a href="chat.html">Open</a>
     </div>
 
     <div class="card">
-        <h2>Study OS</h2>
-        <p>Central dashboard for all tools and future features.</p>
-        <a href="index.html">Enter</a>
+        <h2>About</h2>
+        <p>Learn what this system is and how it was built.</p>
+        <a href="about.html">Read</a>
     </div>
-
-<div class="card">
-    <h2>Study Assistant</h2>
-    <p>Ask questions and get instant study help.</p>
-    <a href="chat.html">Open</a>
-
-</div>
 
 </div>
 
